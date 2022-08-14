@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoldenCC1.1</title>
+</head>
+<body>
+    <h2>Coding Challenge #1.1</h2>
+    <div>
+        <p>Input the Details of First Person</p>
+        <ul>
+            <li>
+                <input type="text" id="fName" placeholder="First Name">
+                <input type="text" id="lName" placeholder="Last Name">
+            </li><br>
+            <li>
+                <input type="number" id="firstMass" placeholder="Mass For Person1">
+                <input type="number" id="firstHeight" placeholder="Height For Person1">
+            </li>
+        </ul>
+        <p>Input the Details of Second Person</p>
+        <ul>
+            <li>
+                <input type="text" id="fName2" placeholder="First Name">
+                <input type="text" id="lName2" placeholder="Last Name">
+            </li><br>
+            <li>
+                <input type="number" id="secondMass" placeholder="Mass For Person2">
+                <input type="number" id="secondHeight" placeholder="Height For Person2">
+            </li>
+        </ul> 
+    </div>
+    <div>
+        <p>Click On the Button Bolow to Display Result</p><br>
+        <button type="button" onclick="checkBMI()">Check BMI</button>
+        <h3 id="Result">.</h3>
+    </div>
+
+    <script>
+        function checkBMI() {
+            const firstName1 = document.getElementById('fName').value;
+            const lastName1 = document.getElementById('lName').value;
+            const fullname1 = firstName1 + " " + lastName1;
+
+            const firstName2 = document.getElementById('fName2').value;
+            const lastName2 = document.getElementById('lName2').value;
+            const fullname2 = firstName2 + " " + lastName2;
+
+            const mass1 = document.getElementById('firstMass').value;
+            const height1 = document.getElementById('firstHeight').value;
+
+            const mass2 = document.getElementById('secondMass').value;
+            const height2 = document.getElementById('secondHeight').value;
+
+            const First = {
+                fullname:fullname1, 
+                mass: mass1, 
+                height: height1,
+                calcBMI: mass1/(height1 ** 2)
+            }
+            const Second = {
+                fullname:fullname2, 
+                mass: mass2, 
+                height: height2,
+                calcBMI: mass2/(height2 ** 2)
+            }
+            let Res;
+            if (First.calcBMI > Second.calcBMI) {
+                Res = First.fullname + `'s BMI (`+ First.calcBMI +`) is Higher than ` +
+                Second.fullname + `'s BMI (`+ Second.calcBMI +`)!`
+                console.log(First.fullname + `'s BMI (`+ First.calcBMI +`) is Higher than ` +
+                Second.fullname + `'s BMI (`+ Second.calcBMI +`)!`)
+            } else {
+                Res = Second.fullname + `'s BMI (`+ Second.calcBMI +`) is Higher than ` +
+                First.fullname + `'s BMI (`+ First.calcBMI +`)!`
+                console.log(Second.fullname + `'s BMI (`+ Second.calcBMI +`) is Higher than ` +
+                First.fullname + `'s BMI (`+ First.calcBMI +`)!`)
+            }
+            document.getElementById('Result').innerHTML = Res;
+        }
+    </script>
+</body>
+</html>

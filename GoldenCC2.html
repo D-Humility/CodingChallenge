@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoldenCC2</title>
+    <script>
+        function calcTip() {
+            let B1 = document.getElementById('bill1').value;
+            let B2 = document.getElementById('bill2').value;
+            let B3 = document.getElementById('bill3').value;
+            let tip1; let tip2; let tip3;
+            if (B1||B2||B3 > 50 && B1||B2||B3 < 300) {
+                tip1 = B1 * 15/100;
+                tip2 = B2 * 15/100;
+                tip3 = B3 * 15/100;
+            } else {
+                tip1 = B1 * 20/100;
+                tip2 = B2 * 20/100;
+                tip3 = B3 * 20/100;
+            }
+            let total1 = B1/1 + tip1/1;
+            let total2 = B2/1 + tip2/1;
+            let total3 = B3/1 + tip3/1;
+            const bills = [B1, B2, B3];
+            const tips = [tip1, tip2, tip3];
+            const total = [total1, total2, total3];
+
+            document.getElementById('tipValues').innerHTML = tips;
+            document.getElementById('totalValues').innerHTML = total
+        }
+    </script>
+</head>
+<body>
+    <h2>Coding Challenge #2</h2>
+    <div>
+        <p>Input The Bill Values in The Fields Below</p>
+        <input type="number" id="bill1" placeholder="First Bill" required><br>
+        <input type="number" id="bill2" placeholder="Second Bill" required><br>
+        <input type="number" id="bill3" placeholder="Third Bill" required><br>
+    </div>
+    <div>
+        <p>Click on the Button Bellow To Check the Values of the Tips and Sums</p><br>
+        <button type="button" onclick="calcTip()">Calculate Tip</button><br>
+        <p>The Value of the Tips For First, Second And Third Bill respectively are shown Below.</p>
+        <h4 id="tipValues"></h4>
+        <br><br>
+        <p>The Value of the Tips For First, Second And Third Summation of 
+            Bill and Tip respectively are shown Below.</p>
+        <h4 id="totalValues"></h4>
+    </div>
+</body>
+</html>

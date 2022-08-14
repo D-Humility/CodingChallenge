@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoldenCC2.1</title>
+    <style>
+        h2 {
+            color: blue;
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        span {
+            color: red;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+    </style>
+    <script>
+        function calcTip(x) {
+            var tip;
+            if (x > 50 && x < 300) {
+                tip = x * 15/100;
+            } else {
+                tip = x * 20/100;
+            }
+            return tip;
+        }
+        function calcTotal(x, y) {
+            return x/1 + y/1;
+        }
+
+        function checkResult() {
+            calcTotal();
+            calcTip();
+            calcAverage();
+            let B1 = document.getElementById('bill1').value;
+            let B2 = document.getElementById('bill2').value;
+            let B3 = document.getElementById('bill3').value;
+            let B4 = document.getElementById('bill4').value;
+            let B5 = document.getElementById('bill5').value;
+            let B6 = document.getElementById('bill6').value;
+            let B7 = document.getElementById('bill7').value;
+            let B8 = document.getElementById('bill8').value;
+            let B9 = document.getElementById('bill9').value;
+            let B10 = document.getElementById('bill10').value;
+
+            const bills = [B1, B2, B3, B4, B5, B6, B7, B8, B9, B10];
+            const tips = [];
+            let i;
+            for (let i = 0; i < bills.length; i++) {
+                tips.push(calcTip(bills[i]));  
+            }
+
+            const totals = [];
+            let v = 0;
+            let w = 0;
+            while (v < bills.length && w < bills.length) {
+                totals.push(calcTotal(bills[v], tips[w]));
+                v++;
+                w++;
+            }
+            function calcAverage(arr = Array) {
+                let b;
+                let Total = 0;
+                for (let b = 0; b < arr.length; b++) {
+                    Total += (arr[b]/1);
+                }
+                const Average = Total/arr.length;
+                return Average;
+            }
+            const tipAverage = calcAverage(tips);
+            const totalAverage = calcAverage(totals);
+
+            document.getElementById('tipValues').innerHTML = tips;
+            document.getElementById('totalValues').innerHTML = totals;
+            document.getElementById('averageTip').innerHTML = tipAverage;
+            document.getElementById('averageTotal').innerHTML = totalAverage;
+        }
+    </script>
+</head>
+<body>
+    <h2>Coding Challenge #2.1</h2>
+    <div>
+        <p>Input The Bill Values in The Fields Below</p>
+        <input type="number" id="bill1" placeholder="First Bill" required>
+        <input type="number" id="bill2" placeholder="Second Bill" required><br>
+        <input type="number" id="bill3" placeholder="Third Bill" required>
+        <input type="number" id="bill4" placeholder="Fourth Bill" required><br>
+        <input type="number" id="bill5" placeholder="Fifth Bill" required>
+        <input type="number" id="bill6" placeholder="Sixth Bill" required><br>
+        <input type="number" id="bill7" placeholder="Seventh Bill" required>
+        <input type="number" id="bill8" placeholder="Eight Bill" required><br>
+        <input type="number" id="bill9" placeholder="Ninth Bill" required>
+        <input type="number" id="bill10" placeholder="Tenth Bill" required><br>
+    </div>
+    <div>
+        <p>Click on the Button Bellow To Check the Values of the Tips, Totals and their
+            Corresponding Average</p><br>
+        <button type="button" onclick="checkResult()">Check Result</button><br>
+        <p>The Value of the Ten Tips respectively are shown Below.</p>
+        <h4 id="tipValues">0</h4>
+        <h3>With Average Tip of: <span id="averageTip">0</span>.</h3>
+        <br><br>
+        <p>The Value of the Ten Totals respectively are shown Below.</p>
+        <h4 id="totalValues">0</h4>
+        <h3>With Average Total of: <span id="averageTotal">0</span>.</h3>
+    </div>
+</body>
+</html>

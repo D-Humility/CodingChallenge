@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoldenCC3</title>
+    <style>
+        h3 {
+            color: red;
+        }
+        h2 {
+            font-family: Arial, Helvetica, sans-serif;
+            color: blue;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>Coding Challenge 3</h2>
+    <div>
+        <p>Pls Input The score for the <b>Dolphins</b> below</p>
+        <ul>
+            <li>
+                <input type="number" id="Dol1" placeholder="1st Score">
+                <input type="number" id="Dol2" placeholder="2nd Score">
+                <input type="number" id="Dol3" placeholder="3rd Score">
+            </li>
+        </ul><br>
+        <p>Pls Input The score for the <b>Koalas</b> below</p></p>
+        <ul>
+            <li>
+                <input type="number" id="Koa1" placeholder="1st Score">
+                <input type="number" id="Koa2" placeholder="2nd Score">
+                <input type="number" id="Koa3" placeholder="3rd Score">
+            </li>
+        </ul>
+        <p>Click On the Button below to Check The winner</p><br>
+        <button type="button" onclick="checkWinner()">Check Winner</button>
+    </div>
+    <div>
+        <p>The Average for Dolphins is Displayed Below</p>
+        <p id="dolAve">.</p>
+        <p>The Average for Koalas is Displayed Below</p>
+        <p id="koaAve">.</p><hr><hr>
+
+        <p>After the Game, it is compiled That:</p>
+        <h3 id="Result"></h3>
+    </div>
+
+    <script>
+        function checkWinner() {
+            let d1 = document.getElementById('Dol1').value;
+            let d2 = document.getElementById('Dol2').value;
+            let d3 = document.getElementById('Dol3').value;
+
+            let k1 = document.getElementById('Koa1').value;
+            let k2 = document.getElementById('Koa2').value;
+            let k3 = document.getElementById('Koa3').value;
+            
+            let DolAve = (d1/1 + d2/1 + d3/1)/3;
+            let KoaAve = (k1/1 + k2/1 + k3/1)/3;
+            document.getElementById('dolAve').innerHTML = DolAve;
+            document.getElementById('koaAve').innerHTML = KoaAve;
+            let R;
+            if (DolAve > KoaAve && DolAve >= 100) {
+                R = `The Dolphins Wins The Trophy With `+ DolAve +` Average.`
+                console.log(`The Dolphins Wins The Trophy With `+ DolAve +` Average.`)
+            } else if (KoaAve > DolAve && KoaAve >= 100) {
+                R = `The Koalas Wins The Trophy With `+ KoaAve +` Average.`
+                console.log(`The Koalas Wins The Trophy With `+ KoaAve +` Average.`) 
+            } else if (DolAve == KoaAve && DolAve >= 100) {
+                R = `Both Teams Wins The Trophy With a Draw Average of `+ DolAve +`.`
+                console.log(`Both Teams Wins The Trophy With a Draw Average of `+ DolAve +`.`)
+            } else {
+                R = "No Team Wins The Trophy"
+                console.log("No Team Wins The Trophy")
+            };
+            document.getElementById('Result').innerHTML = R;
+        }
+    </script>
+</body>
+</html>

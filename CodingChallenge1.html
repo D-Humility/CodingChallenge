@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CC #1</title>  
+    <style>
+        h2 {
+            color: blue;
+        }
+        #Output {
+            color: red;
+            font-family:Arial, Helvetica, sans-serif
+        }
+    </style> 
+</head>
+<body>
+    <h2>Coding Challenge #1</h2>
+    <div>
+        <p>Input the values of the Forecasted Maximum Temperatures in The Feilds Below</p>
+        <ul>
+            <li>
+                <input type="number" id="mt1" placeholder="Max Temp. 1">
+                <input type="number" id="mt2" placeholder="Max Temp. 2"><br><br>
+            </li>
+            <li>
+                <input type="number" id="mt3" placeholder="Max Temp. 3">
+                <input type="number" id="mt4" placeholder="Max Temp. 4"><br><br>
+            </li>
+            <li>
+                <input type="number" id="mt5" placeholder="Max Temp. 5">
+            </li>
+        </ul>
+    </div>
+    <div>
+        <p>Click on the Button Below To Display the Result of The Maximum Temperatures Data</p>
+        <br>
+        <button type="button" onclick="printForecast()">Print Forecast</button>
+        <p>The Output Result shows that</p>
+        <h4 id="Output">.</h4>
+    </div>
+    <script>
+        function printForecast() {
+            let MT1 = document.getElementById('mt1').value;
+            let MT2 = document.getElementById('mt2').value;
+            let MT3 = document.getElementById('mt3').value;
+            let MT4 = document.getElementById('mt4').value;
+            let MT5 = document.getElementById('mt5').value;
+            const arr = [MT1, MT2, MT3, MT4, MT5];
+            let v = 0;
+            let w = 1;
+            let result = "";
+            while (v < arr.length && w <= arr.length) {
+                result += `... `+ arr[v] + `&#8451; in `+ w +` days `;
+                v++;
+                w++;
+            };
+            console.log(result);
+            document.getElementById('Output').innerHTML= result
+        }
+    </script>
+</body>
+</html>

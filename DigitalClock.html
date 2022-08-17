@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        #Clock {
+            font-family: Arial, Helvetica, sans-serif;
+            color: goldenrod;
+            font-weight: bolder;
+            font-size: 50px;
+        }
+        h2 {
+            color: blue;
+        }
+        h3 {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+<body onload="begin()">
+    <h2>Digital Clock</h2>
+    <div>
+        <p>Click On The Buttons Below To Hide or Show The Clock</p>
+        <p id="Clock">.</p>
+        <h3 id="Date"></h3>
+        <button type="button" onclick="hide()">Hide Clock</button>
+        <button type="button" onclick="show()">Show Clock</button>
+    </div>
+    <script>
+        function hide() {
+            document.getElementById('Clock').style.display = "none";
+            document.getElementById('Date').style.display = "none";
+        }
+        function show() {
+            document.getElementById('Clock').style.display = "block";
+            document.getElementById('Date').style.display = "block";
+        }
+        function begin() {
+            const M = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
+            "October", "November", "December"];
+            const D = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+            let Time = new Date();
+            let Year = Time.getFullYear();
+            let Month = M[Time.getMonth()];
+            let Day = D[Time.getDay() - 1];
+            let Day1 = Time.getDate();
+            Day1 = correct(Day1);
+            let Hour = Time.getHours();
+            let Min = Time.getMinutes();
+            let Sec = Time.getSeconds();
+            Hour = zeroPlus(Hour);
+            Min = zero(Min);
+            Sec = zero(Sec);
+
+            let fullDate = Day + " "+ Day1 + " " + Month + ", " + Year + ".";
+            let fullTime = Hour + ":" + Min + ":" + Sec + ".";
+            fullTime = shorten(fullTime, Time.getHours());
+            setTimeout(begin, 1000);   
+            document.getElementById("Clock").innerHTML= fullTime;
+            document.getElementById("Date").innerHTML= fullDate;
+        }
+        function correct(v) {
+            if (v == 1 || v == 21 || v == 31) {v = v + "st"}
+            else if (v == 2 || v == 22) {v = v + "nd"}
+            else if (v == 3 || v == 23) {v = v + "rd"}
+            else {v = v + "th"};
+            return v;
+        }
+        function zero(w) {
+            if (w < 10) {w = "0" + w};
+            return w;
+        }
+        function zeroPlus(g) {
+            if (g > 12) {g = -(12 - g)};
+            if (g < 10) {g = "0" + g};
+            return g;
+        }
+        function shorten(x, y) {
+            if (y < 12) {x = x + "AM";}
+            if (y > 12) {x = x + "PM";}
+            return x;
+        }
+    </script>
+</body>
+</html>
